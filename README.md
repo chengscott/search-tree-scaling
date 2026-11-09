@@ -81,6 +81,6 @@ git remote add origin git@github.com:<user>/<repo>.git
 git push -u origin main
 ```
 
-Then in the repository settings choose Pages → Deploy from a branch → `main` / `/ (root)`.
+Then in the repository settings choose Pages → Deploy from a branch → `gh-pages` / `/ (root)`.
 `.nojekyll` is present so files and folders are served as-is. All links are relative, so the
 site works at `https://<user>.github.io/<repo>/` without configuration.
