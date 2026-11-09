@@ -1,0 +1,359 @@
+/* Shared theme layer. Loaded after each sub-site's own stylesheet so the project page,
+   the figure explorer and the proof walkthrough share one palette and one type system:
+   warm paper background, indigo accent, Source Serif 4 headings, Inter body. */
+
+/* ---- Figure explorer (figures/, figures/figure1/) ---- */
+body.site-figures{
+  --green:#4b558f;--green-light:#eceef6;--paper:#f6f5f1;--card:#fffefa;--ink:#262a31;--muted:#626960;--line:#dedfd8;
+  font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+body.site-figures.figure1-page{--blue:#4b558f}
+body.site-figures h1,
+body.site-figures .tab-number,
+body.site-figures .intro-card h2,
+body.site-figures .intro-stat strong,
+body.site-figures .shape-panel .panel-tag,
+body.site-figures .research-nav-number,
+body.site-figures .research-brand h1,
+body.site-figures .figure-page-title,
+body.site-figures .domain-heading h3,
+body.site-figures .merged-heading h2,
+body.site-figures .formula,
+body.site-figures.figure1-page h3{font-family:"Source Serif 4",Georgia,"Times New Roman",serif}
+body.site-figures .research-nav-number,
+body.site-figures .research-brand small,
+body.site-figures .research-brand h1 em,
+body.site-figures h1 em,
+body.site-figures .brand span,
+body.site-figures .recommended-games button,
+body.site-figures .mode-switch button.active{color:#4b558f}
+body.site-figures .research-nav-link{background:#fffefa;border-color:#dedfd8}
+body.site-figures .research-nav-link:hover{border-color:#9ea7dc}
+body.site-figures .research-nav-link.active{background:#1d2130;border-color:#1d2130}
+body.site-figures .research-nav-link.active .research-nav-number{color:#aab4ec}
+body.site-figures .research-nav-link:focus-visible{outline-color:#4b558f}
+body.site-figures .research-brand-icon{border-color:#4b558f}
+body.site-figures .research-brand-icon::before,
+body.site-figures .research-brand-icon::after,
+body.site-figures .research-brand-icon i{background:#4b558f}
+body.site-figures .research-header-meta>span{background:#4b558f}
+body.site-figures .figure1-link{color:#4b558f;border-color:#c5cae6}
+body.site-figures .figure1-link:hover{background:#eceef6}
+body.site-figures .badge{border-color:#c5cae6;color:#4b558f}
+body.site-figures .site-bar{font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+
+/* ---- Proof walkthrough (proof/) ---- */
+body.site-proof{--serif:"Source Serif 4",Georgia,"Times New Roman",serif;--accent:#4b558f}
+
+/* Remaining hard-coded teal accents in the explorer stylesheets. */
+body.site-figures .intro-card,
+body.site-figures.figure1-page .intro{background:linear-gradient(108deg,#e9ebf5 0%,#f0f1f8 55%,#f6f5f1 100%);border-color:#d7dbee}
+body.site-figures .intro-card p:last-child{color:#4b5160}
+body.site-figures .intro-stat{border-color:#cfd3e6}
+body.site-figures .intro-stat strong{color:#4b558f}
+body.site-figures .intro-stat span{color:#626960}
+body.site-figures .live-dot,
+body.site-figures .research-header-meta>span,
+body.site-figures.figure1-page .dot{background:#4b558f;box-shadow:0 0 0 4px #e3e6f4}
+body.site-figures .active .tab-number{color:#aab4ec}
+body.site-figures .select-input:focus,
+body.site-figures .search-input:focus{box-shadow:0 0 0 3px #d3d8ef}
+body.site-figures .inline-actions button,
+body.site-figures .mini-button,
+body.site-figures .back-link,
+body.site-figures.figure1-page .recommended-games button{background:#f0f1f8;border-color:#d7dbee;color:#4b558f}
+body.site-figures .inline-actions button:hover,
+body.site-figures .mini-button:hover,
+body.site-figures .back-link:hover{background:#e3e6f4}
+body.site-figures .choice-chip.selected{background:#e3e6f4;color:#3a4379;border-color:#9ea7dc}
+body.site-figures .control-tip{border-left-color:#aab4ec}
+body.site-figures .chart-actions button:hover{background:#eceef6}
+body.site-figures .count-pill{background:#e9ebf5;color:#3a4379}
+body.site-figures .series-check input{accent-color:#4b558f}
+body.site-figures .series-check.is-selected{background:#eceef6}
+body.site-figures .source-note code{color:#3a4379;background:#eceef6}
+body.site-figures.figure1-page button:hover{border-color:#9ea7dc}
+
+/* ---- Generated: larger text for the figure explorer (factor 1.30, floor 13px) ---- */
+body.site-figures .eyebrow{font-size:13px}
+body.site-figures .section-kicker{font-size:13px}
+body.site-figures .card-kicker{font-size:13px}
+body.site-figures .header-meta{font-size:16px}
+body.site-figures .figure-tab strong{font-size:18px}
+body.site-figures .figure-tab small{font-size:14px}
+body.site-figures .intro-card p:last-child{font-size:17px}
+body.site-figures .intro-stat span{font-size:14px}
+body.site-figures .small-icon{font-size:22px}
+body.site-figures h3{font-size:21px}
+body.site-figures .control-title{font-size:16px}
+body.site-figures .control-description{font-size:14px}
+body.site-figures .select-input{font-size:16px}
+body.site-figures .search-input{font-size:16px}
+body.site-figures .check-row{font-size:16px}
+body.site-figures .inline-actions button{font-size:14px}
+body.site-figures .mini-button{font-size:14px}
+body.site-figures .choice-chip{font-size:14px}
+body.site-figures .control-tip{font-size:14px}
+body.site-figures .chart-actions button{font-size:14px}
+body.site-figures .chart-area .axis-label{font-size:17px}
+body.site-figures .chart-area .tick-label{font-size:14px}
+body.site-figures .legend-item{font-size:14px}
+body.site-figures .note-card p{font-size:16px}
+body.site-figures .source-card p{font-size:16px}
+body.site-figures .note-card li{font-size:16px}
+body.site-figures .source-card li{font-size:16px}
+body.site-figures .reference-card summary{font-size:16px}
+body.site-figures .reference-card summary::before{font-size:23px}
+body.site-figures .reference-hint{font-size:14px}
+body.site-figures .tooltip{font-size:14px}
+body.site-figures .tooltip strong{font-size:16px}
+body.site-figures footer{font-size:14px}
+body.site-figures .figure1-link{font-size:16px}
+body.site-figures .research-nav-link strong{font-size:17px}
+body.site-figures .research-nav-link small{font-size:13px}
+body.site-figures .research-brand small{font-size:13px}
+body.site-figures .research-header-meta{font-size:14px}
+body.site-figures .back-link{font-size:16px}
+body.site-figures .domain-heading h3{font-size:23px}
+body.site-figures .count-pill{font-size:13px}
+body.site-figures .domain-explainer{font-size:14px}
+body.site-figures .series-check{font-size:14px}
+body.site-figures .series-check small{font-size:13px}
+body.site-figures .merged-heading p:last-child{font-size:16px}
+body.site-figures .merged-chart .empty{font-size:17px}
+body.site-figures .source-note{font-size:16px}
+body.site-figures.figure1-page{font-size:18px}
+body.site-figures.figure1-page .brand{font-size:21px}
+body.site-figures.figure1-page .header-right{font-size:14px}
+body.site-figures.figure1-page .eyebrow{font-size:13px}
+body.site-figures.figure1-page .formula{font-size:22px}
+body.site-figures.figure1-page .section-title{font-size:17px}
+body.site-figures.figure1-page .section-title span{font-size:13px}
+body.site-figures.figure1-page .mode-switch button{font-size:16px}
+body.site-figures.figure1-page .mode-description{font-size:14px}
+body.site-figures.figure1-page .label{font-size:16px}
+body.site-figures.figure1-page .label small{font-size:13px}
+body.site-figures.figure1-page .control small{font-size:13px}
+body.site-figures.figure1-page .control label{font-size:16px}
+body.site-figures.figure1-page .control output{font-size:22px}
+body.site-figures.figure1-page .range-notes{font-size:13px}
+body.site-figures.figure1-page .check{font-size:14px}
+body.site-figures.figure1-page .actions button{font-size:14px}
+body.site-figures.figure1-page .notice{font-size:14px}
+body.site-figures.figure1-page .badge{font-size:13px}
+body.site-figures.figure1-page .view-actions button{font-size:14px}
+body.site-figures.figure1-page .canvas-hint{font-size:13px}
+body.site-figures.figure1-page #tooltip{font-size:14px}
+body.site-figures.figure1-page .stats span{font-size:13px}
+body.site-figures.figure1-page details{font-size:14px}
+body.site-figures.figure1-page code{font-size:13px}
+body.site-figures.figure1-page .compare-card h4{font-size:14px}
+body.site-figures.figure1-page .compare-card .missing{font-size:16px}
+body.site-figures.figure1-page .reference p{font-size:16px}
+body.site-figures.figure1-page .reference strong{font-size:17px}
+body.site-figures.figure1-page .reference a{font-size:14px}
+body.site-figures.figure1-page .play-row button{font-size:14px}
+body.site-figures.figure1-page footer{font-size:13px}
+body.site-figures.figure1-page .coverage-description{font-size:14px}
+body.site-figures.figure1-page .recommended-games button{font-size:13px}
+body.site-figures.figure1-page .snapshot-picker select{font-size:14px}
+body.site-figures.figure1-page .sim-coverage span{font-size:13px}
+body.site-figures .chart-area .tick-label{font-size:13px}
+/* Wider control columns to fit the larger labels. */
+@media(min-width:1001px){body.site-figures .workbench{grid-template-columns:320px minmax(0,1fr)}body.site-figures.figure1-page .workspace{grid-template-columns:320px 1fr}}
+
+/* ---- Structural alignment: both sub-sites use the same card language as the proof site ---- */
+/* Explorer: its brand/breadcrumb row duplicates the site bar, so it is removed. */
+body.site-figures .research-header{display:none}
+body.site-figures .research-nav{padding-top:26px}
+body.site-figures.figure1-page main{padding-top:0}
+/* Tabs: title only. */
+body.site-figures .research-nav-link small{display:none}
+body.site-figures .research-nav-link{min-height:60px;align-items:center}
+body.site-figures .research-nav-link strong{font-size:17px;font-weight:600}
+/* Figure tabs styled like the proof site's navigation: paper surface, 5px radius, pale-indigo active state. */
+body.site-figures .research-nav-link{border-radius:5px;box-shadow:none;min-height:66px;transition:background .15s,border-color .15s}
+body.site-figures .research-nav-link:hover{transform:none;background:#f3f3f8}
+body.site-figures .research-nav-link.active{background:#e3e5ed;border-color:#c9cde0;color:#4b558f}
+body.site-figures .research-nav-link.active .research-nav-number{color:#4b558f}
+body.site-figures .research-nav-link.active small{color:#6a7090}
+/* Cards: one radius, one surface, no drop shadows. */
+body.site-figures .figure-tab,
+body.site-figures .control-card,body.site-figures .chart-card,body.site-figures .note-card,body.site-figures .source-card,body.site-figures .reference-card,
+body.site-figures .toolbar,body.site-figures .domain-card,body.site-figures .merged-card,body.site-figures .source-note,
+body.site-figures.figure1-page aside,body.site-figures.figure1-page .tree-panel,body.site-figures.figure1-page .comparison,body.site-figures.figure1-page .reference{border-radius:6px;box-shadow:none;background:#fffefa;border:1px solid var(--line)}
+body.site-figures .intro-card,body.site-figures.figure1-page .intro{border-radius:8px;background:#eeefe9;border:1px solid #e2e4dc}
+body.site-figures .small-icon{border-radius:5px}
+body.site-figures .mode-switch{border-radius:5px}
+body.site-figures .compare-card,body.site-figures .merged-chart .empty{border-radius:5px}
+/* Buttons: match the proof site's .button (4px radius, paper surface). */
+body.site-figures .mini-button,body.site-figures .inline-actions button,body.site-figures .chart-actions button,body.site-figures .back-link,
+body.site-figures.figure1-page .actions button,body.site-figures.figure1-page .view-actions button,body.site-figures.figure1-page .play-row button,body.site-figures.figure1-page .recommended-games button{border-radius:4px}
+body.site-figures .choice-chip,body.site-figures .count-pill{border-radius:4px}
+/* Proof: the sidebar brand duplicates the site bar. */
+body.site-proof .brand{display:none}
+@media(min-width:801px){body.site-proof .topbar{display:none}body.site-proof main{padding-top:30px}}
+body.site-proof .sidebar{padding-top:14px}
+body.site-proof .side-label:first-of-type{margin-top:8px}
+
+/* ---- No page footers; the shared bar carries the site links. ---- */
+body.site-figures footer,body.site-proof .footer{display:none}
+
+/* ---- Figure 1: controls as a horizontal toolbar above the tree. ---- */
+body.site-figures.figure1-page .workspace{grid-template-columns:minmax(0,1fr)}
+body.site-figures.figure1-page aside.ctl-toolbar{position:static;padding:18px 22px 16px}
+body.site-figures.figure1-page .ctl-toolbar .section-title,
+body.site-figures.figure1-page .ctl-toolbar .mode-description,
+body.site-figures.figure1-page .ctl-toolbar .coverage-description,
+body.site-figures.figure1-page .ctl-toolbar .recommended-games,
+body.site-figures.figure1-page .ctl-toolbar .sim-coverage{display:none}
+body.site-figures.figure1-page .ctl-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px 28px;align-items:end}
+body.site-figures.figure1-page .ctl-row+.ctl-row{margin-top:16px;padding-top:16px;border-top:1px solid var(--line);align-items:start}
+body.site-figures.figure1-page .ctl-field{min-width:0}
+body.site-figures.figure1-page .ctl-field .label,body.site-figures.figure1-page .ctl-field .mode-switch{margin:0}
+body.site-figures.figure1-page .ctl-field .label{margin-bottom:8px}
+body.site-figures.figure1-page .ctl-field .snapshot-picker{margin:0}
+body.site-figures.figure1-page .ctl-options{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:flex-end;min-width:0}
+body.site-figures.figure1-page .ctl-options .check,body.site-figures.figure1-page .ctl-options .actions{margin:0}
+body.site-figures.figure1-page .ctl-sliders .control{margin:0}
+body.site-figures.figure1-page .ctl-toolbar #modelOptions{margin-top:14px;display:flex;gap:18px;align-items:end;flex-wrap:wrap}
+body.site-figures.figure1-page .ctl-toolbar #modelOptions .label{margin:0 0 6px}
+body.site-figures.figure1-page .ctl-toolbar #modelOptions .check{margin:0 0 10px}
+body.site-figures.figure1-page .ctl-toolbar .notice:empty{display:none}
+body.site-figures.figure1-page .ctl-toolbar .notice{margin-top:12px}
+@media(max-width:1000px){body.site-figures.figure1-page .ctl-row{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){body.site-figures.figure1-page .ctl-row{grid-template-columns:1fr}}
+body.site-figures.figure1-page #comparison{scroll-margin-top:calc(var(--site-bar-h) + 12px)}
+
+/* Figure 1: recorded trees only. The synthetic model mode, its seed controls and animation are retired. */
+body.site-figures.figure1-page .mode-switch,body.site-figures.figure1-page #modelOptions,body.site-figures.figure1-page #play{display:none!important}
+body.site-figures.figure1-page .ctl-top{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr) auto}
+body.site-figures.figure1-page .ctl-options{flex-wrap:nowrap;gap:14px}
+body.site-figures.figure1-page .ctl-speed input{width:80px}
+@media(max-width:1000px){body.site-figures.figure1-page .ctl-top{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){body.site-figures.figure1-page .ctl-top{grid-template-columns:1fr}}
+
+/* Figure 1: no provenance panel, no mode badge. */
+body.site-figures.figure1-page .tree-panel details,body.site-figures.figure1-page #modeBadge{display:none!important}
+body.site-figures.figure1-page .panel-head h2{margin-top:0}
+
+/* ---- Figure 1: one card for controls + tree; comparison lab below ---- */
+body.site-figures.figure1-page .workspace{gap:0}
+body.site-figures.figure1-page aside.ctl-toolbar{border-radius:6px 6px 0 0;border-bottom:0}
+body.site-figures.figure1-page .tree-panel{border-radius:0 0 6px 6px}
+body.site-figures.figure1-page .panel-head{border-top:1px solid var(--line);justify-content:flex-end;min-height:0;padding:10px 22px}
+body.site-figures.figure1-page .panel-head>div:first-child{display:none}
+body.site-figures.figure1-page .ctl-options{align-items:center}
+body.site-figures.figure1-page .ctl-speed{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:#626960}
+body.site-figures.figure1-page .ctl-speed input{width:90px;accent-color:#4b558f}
+body.site-figures.figure1-page .ctl-speed output{font-variant-numeric:tabular-nums;min-width:72px}
+body.site-figures.figure1-page #playSteps{background:#4b558f;color:#fff;border-color:#4b558f;padding:8px 14px;font-size:14px;line-height:1.2}
+body.site-figures.figure1-page #playSteps:hover{background:#3a4379}
+body.site-figures.figure1-page .compare-lab{margin-top:22px;background:#fffefa;border:1px solid var(--line);border-radius:6px;padding:22px 22px 24px}
+body.site-figures.figure1-page .compare-lab-head{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin-bottom:18px}
+body.site-figures.figure1-page .compare-lab-head h3{font-family:"Source Serif 4",Georgia,serif;font-size:24px;font-weight:500;margin:0 0 4px}
+body.site-figures.figure1-page .compare-lab-head p{margin:0;font-size:15px;color:#626960;max-width:720px}
+body.site-figures.figure1-page #cmpReset{border-radius:4px;border:1px solid var(--line);background:#fffefa;padding:9px 14px;font-size:14px}
+body.site-figures.figure1-page .compare-lab-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+body.site-figures.figure1-page .cmp-card{border:1px solid var(--line);border-radius:6px;background:#fff;display:flex;flex-direction:column;min-width:0}
+body.site-figures.figure1-page .cmp-config{display:grid;grid-template-columns:minmax(0,1.6fr) repeat(3,minmax(0,1fr));gap:10px;padding:12px 14px;border-bottom:1px solid var(--line);background:#f6f5f1;border-radius:6px 6px 0 0}
+body.site-figures.figure1-page .cmp-config label{display:flex;flex-direction:column;gap:6px;font-size:15px;color:#262a31;min-width:0}
+body.site-figures.figure1-page .cmp-config select{width:100%;font-size:14px;padding:6px 8px;border:1px solid var(--line);border-radius:4px;background:#fff;text-transform:none;letter-spacing:0;color:#262a31}
+body.site-figures.figure1-page .cmp-canvas{position:relative;height:340px;background:radial-gradient(#e6e8e4 .7px,transparent .7px) 0 0/14px 14px}
+body.site-figures.figure1-page .cmp-canvas svg{width:100%;height:100%;display:block}
+body.site-figures.figure1-page .cmp-empty{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#7a7f8c;font-size:14px}
+body.site-figures.figure1-page .cmp-stats{padding:12px 14px;gap:8px}
+body.site-figures.figure1-page .cmp-stats div+div{padding-left:14px}
+body.site-figures.figure1-page .cmp-stats span{font-size:12px;margin-bottom:4px}
+body.site-figures.figure1-page .cmp-stats strong{font-size:18px}
+@media(max-width:900px){body.site-figures.figure1-page .compare-lab-grid{grid-template-columns:1fr}body.site-figures.figure1-page .cmp-config{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Figure 1: no "Reading the figure" panel; toolbar labels without the small uppercase tags, matching the comparison panels. */
+body.site-figures.figure1-page .reference{display:none}
+body.site-figures.figure1-page .ctl-toolbar .label small,body.site-figures.figure1-page .ctl-toolbar .control label small{display:none}
+body.site-figures.figure1-page .ctl-toolbar .label,body.site-figures.figure1-page .ctl-toolbar .control label{font-size:15px;color:#262a31}
+body.site-figures.figure1-page .cmp-config{grid-template-columns:minmax(140px,1fr) minmax(120px,.8fr) minmax(110px,.75fr) minmax(175px,1.15fr);align-items:end}
+body.site-figures.figure1-page .cmp-config label span{white-space:nowrap}
+
+/* Figure 1: tree-panel action row holds the drawing controls. */
+body.site-figures.figure1-page .tree-panel .view-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+body.site-figures.figure1-page .tree-panel .view-actions .check{margin:0 6px 0 0;font-size:14px}
+body.site-figures.figure1-page .tree-panel .view-actions button{padding:8px 14px;font-size:14px}
+
+/* Figure 1: play controls sit at the right end of the slider row; formula box typeset by KaTeX. */
+body.site-figures.figure1-page .ctl-sliders{grid-template-columns:repeat(4,minmax(0,1fr)) auto;align-items:end}
+body.site-figures.figure1-page .ctl-play{display:flex;flex-direction:column;align-items:flex-end;gap:8px;padding-bottom:22px;white-space:nowrap}
+body.site-figures.figure1-page .ctl-play .ctl-speed{font-size:13px}
+body.site-figures.figure1-page .ctl-top{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr) auto;align-items:end}
+body.site-figures.figure1-page .intro{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(320px,.9fr);gap:28px;align-items:center}
+body.site-figures.figure1-page .intro .sub{font-size:16px;line-height:1.7;max-width:none}
+body.site-figures.figure1-page .intro .formula{font-size:18px;border-left:1px solid #cfd3e6;padding-left:28px;text-align:center}
+body.site-figures.figure1-page .intro .formula .katex-display{margin:0}
+@media(max-width:1000px){body.site-figures.figure1-page .ctl-sliders{grid-template-columns:repeat(2,minmax(0,1fr))}body.site-figures.figure1-page .ctl-play{grid-column:1/-1;flex-direction:row;align-items:center;justify-content:flex-end;padding-bottom:0}body.site-figures.figure1-page .intro{grid-template-columns:1fr}body.site-figures.figure1-page .intro .formula{border-left:0;padding-left:0;text-align:left}}
+@media(max-width:560px){body.site-figures.figure1-page .ctl-sliders{grid-template-columns:1fr}}
+
+/* ---- Explorer: single title per figure, folded details, no side panels ---- */
+body.site-figures .section-kicker,body.site-figures .intro .eyebrow,body.site-figures .puct-intro .section-kicker{display:none}
+body.site-figures .bottom-grid,body.site-figures .reference-card{display:none}
+/* Title row: heading + a quiet text toggle; the description is a card only when expanded. */
+body.site-figures .intro-card .intro-copy,body.site-figures.figure1-page .intro>div:first-child{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 18px;max-width:none}
+body.site-figures .intro-card .intro-copy>p:not(.section-kicker),body.site-figures.figure1-page .intro .sub{flex:1 1 100%;margin:8px 0 0}
+body.site-figures .intro-toggle{border:0;background:none;padding:0;font-size:14px;color:#4b558f;cursor:pointer;font-family:inherit}
+body.site-figures .intro-toggle:hover{text-decoration:underline;text-underline-offset:3px}
+body.site-figures .intro-toggle::after{content:"";display:inline-block;margin-left:7px;border:4px solid transparent;border-top:5px solid currentColor;vertical-align:middle;transform:translateY(2px)}
+body.site-figures .intro-toggle[aria-expanded="true"]::after{border-top-color:transparent;border-bottom:5px solid currentColor;transform:translateY(-3px)}
+body.site-figures .intro-card.is-folded,body.site-figures.figure1-page .intro.is-folded{background:transparent;border-color:transparent;padding:6px 0 2px;margin-bottom:14px;grid-template-columns:1fr}
+body.site-figures .intro-card.is-folded .intro-copy p:not(.section-kicker),body.site-figures .intro-card.is-folded .intro-stat,
+body.site-figures.figure1-page .intro.is-folded .sub,body.site-figures.figure1-page .intro.is-folded .formula{display:none}
+body.site-figures .intro-card h2,body.site-figures.figure1-page .intro h2{margin:0}
+body.site-figures .intro-copy p .katex{font-size:1.02em}
+
+/* Intro: plain in both states; description + optional formula appear inline under the title. */
+body.site-figures .intro-card,body.site-figures.figure1-page .intro{background:transparent;border:0;padding:6px 0 10px;margin-bottom:14px;box-shadow:none}
+body.site-figures .intro-card:not(.is-folded){display:grid;grid-template-columns:minmax(0,1.45fr) minmax(300px,.75fr);gap:12px 32px;align-items:center}
+body.site-figures .intro-card .intro-stat{display:none!important}
+body.site-figures .intro-formula{border-left:1px solid #cfd3e6;padding-left:28px;font-size:18px;text-align:center}
+body.site-figures .intro-formula .katex-display{margin:0}
+body.site-figures .intro-card.is-folded .intro-formula{display:none}
+body.site-figures.figure1-page .intro:not(.is-folded){padding-bottom:12px}
+@media(max-width:900px){body.site-figures .intro-card:not(.is-folded){grid-template-columns:1fr}body.site-figures .intro-formula{border-left:0;padding-left:0;text-align:left}}
+
+/* Figure 3: one pUCT panel on top, six thread panels (50-1600 simulations) below. */
+/* Tree shape: no side card; two panel cards with their own chip rows */
+body.site-figures:not(.figure1-page) .control-card{display:none}
+body.site-figures:not(.figure1-page) .workbench{grid-template-columns:1fr}
+body.site-figures .chart-card{background:transparent;border:0;box-shadow:none;padding:0}
+body.site-figures .chart-header{padding:0 0 12px;justify-content:flex-end}
+body.site-figures .chart-header>div:first-child{display:none}
+body.site-figures .chart-area{display:block;min-height:0}
+body.site-figures .shape-panel{background:#fffefa;border:1px solid #dedfd8;border-radius:18px;box-shadow:0 12px 34px rgba(25,46,55,.055);padding:22px 26px 20px;margin-bottom:22px;min-width:0}
+body.site-figures .shape-panel h4{margin:0 0 14px;font-family:"Source Serif 4",Georgia,serif;font-size:24px;font-weight:600;color:#262a31}
+body.site-figures .shape-panel .panel-tag{color:#4b558f;margin-right:10px}
+body.site-figures .shape-panel .control-group{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;padding:12px 16px;border:1px solid #e3e4dd;border-radius:12px;background:#f6f5f1;margin:0 0 16px}
+body.site-figures .shape-panel .control-title{margin:0;font-size:15px;font-weight:600;letter-spacing:0}
+body.site-figures .shape-panel .chip-row{gap:8px}
+body.site-figures .shape-panel .inline-actions{margin:0 0 0 auto}
+body.site-figures .shape-single{max-width:640px;margin:0 auto}
+body.site-figures .shape-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 20px}
+body.site-figures .shape-caption{margin:4px 0 6px;text-align:center;font:500 15px/1.3 Inter,system-ui,sans-serif;color:#626960}
+body.site-figures .shape-caption .panel-tag{font-family:"Source Serif 4",Georgia,serif;font-size:17px;color:#4b558f;margin-right:8px}
+body.site-figures .shape-cell svg{width:100%;height:auto;display:block}
+@media(max-width:1100px){body.site-figures .shape-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){body.site-figures .shape-grid{grid-template-columns:1fr}body.site-figures .shape-panel{padding:16px 14px}}
+
+/* Tree shape: in-chart legend with hover highlight */
+body.site-figures .shape-panel svg g.series{transition:opacity .15s}
+body.site-figures .shape-panel svg.has-hot g.series{opacity:.12}
+body.site-figures .shape-panel svg.has-hot g.series.hot{opacity:1}
+body.site-figures .shape-panel svg g.series.hot path{stroke-width:4}
+body.site-figures .shape-panel svg .legend-entry{cursor:pointer}
+body.site-figures .shape-panel svg .legend-entry text,body.site-figures .shape-panel svg .legend-title{font-family:Inter,system-ui,sans-serif}
+body.site-figures .shape-panel svg.has-hot .legend-entry{opacity:.35}
+body.site-figures .shape-panel svg.has-hot .legend-entry.hot{opacity:1}
+body.site-figures .shape-panel svg .legend-entry.hot text{font-weight:600;fill:#1c2a4a}
+
+/* Figure 1: play controls on the tree panel's row */
+body.site-figures.figure1-page .view-actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px}
+body.site-figures.figure1-page .view-actions .ctl-play{display:flex;flex-direction:row;align-items:center;gap:12px;margin-left:auto;padding:0}
+body.site-figures.figure1-page .view-actions .ctl-play .ctl-speed{display:inline-flex;align-items:center;gap:8px;margin:0}
+body.site-figures.figure1-page .view-actions .ctl-play .ctl-speed input{width:110px}

@@ -1,0 +1,4 @@
+# Camera-ready sources stay local; main.tex is read only to sync the proof statements.
+camera_ready/
+__pycache__/
+.DS_Store

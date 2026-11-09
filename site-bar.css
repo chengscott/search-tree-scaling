@@ -1,0 +1,26 @@
+/* Shared project bar shown above every page of the site: light, part of the page, not an app chrome. */
+:root{--site-bar-h:60px}
+header.site-bar{position:sticky;top:0;z-index:60;height:var(--site-bar-h);min-height:0;max-width:none;width:auto;margin:0;display:flex;align-items:center;justify-content:flex-start;gap:28px;padding:0 32px;background:#f6f5f1;color:#262a31;border-bottom:1px solid #dedfd8;font:16px/1 Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;box-sizing:border-box}
+.site-bar *{box-sizing:border-box}
+.site-bar a{color:inherit;text-decoration:none}
+.site-bar-brand{display:flex;align-items:baseline;gap:12px;white-space:nowrap;min-width:0}
+header.site-bar .site-bar-title{font-family:"Source Serif 4",Georgia,"Times New Roman",serif;font-size:21px;font-weight:500;letter-spacing:-.005em;color:#262a31}
+header.site-bar .site-bar-title em{font-style:italic;color:#4b558f;margin-left:.28em}
+header.site-bar .site-bar-brand small{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#7a7f8c}
+.site-bar-brand .glyph{display:none}
+.site-bar-links{display:flex;align-items:center;gap:6px;margin-left:auto;min-width:0;overflow-x:auto;scrollbar-width:none;height:100%}
+.site-bar-links::-webkit-scrollbar{display:none}
+.site-bar-links .short{display:none}
+.site-bar-links a{position:relative;display:inline-flex;align-items:center;height:100%;padding:0 12px;color:#4d525e;white-space:nowrap;font-weight:500}
+.site-bar-links a::after{content:"";position:absolute;left:12px;right:12px;bottom:-1px;height:2px;background:transparent;border-radius:2px}
+.site-bar-links a:hover{color:#262a31}
+.site-bar-links a.active{color:#4b558f}
+.site-bar-links a.active::after{background:#4b558f}
+.site-bar-links a.ext::after{display:none}
+.site-bar-links a.ext .arrow{margin-left:5px;color:#9aa0b8;font-size:13px}
+.site-bar-links a:focus-visible,.site-bar-brand:focus-visible{outline:2px solid #aab4ec;outline-offset:-2px}
+/* Proof walkthrough: its sidebar is position:fixed from the top edge; push it below the bar. */
+body.with-site-bar-fixed .sidebar{top:var(--site-bar-h)}
+body.with-site-bar-fixed .skip{top:calc(var(--site-bar-h) - 60px)}
+@media(max-width:760px){:root{--site-bar-h:54px}header.site-bar{padding:0 14px;gap:10px}.site-bar-brand small{display:none}.site-bar-title{font-size:19px}.site-bar-links a{padding:0 9px}.site-bar-links a[data-hide-narrow]{display:none}.site-bar-links .long{display:none}.site-bar-links .short{display:inline}}
+@media(max-width:560px){.site-bar-title em{display:none}.site-bar-brand{flex:0 1 auto;overflow:hidden}.site-bar-title{font-size:17px}.site-bar-links{flex:0 0 auto;gap:0}.site-bar-links a{padding:0 8px}.site-bar-links a[data-home]{display:none}header.site-bar{gap:8px;padding:0 14px}}
