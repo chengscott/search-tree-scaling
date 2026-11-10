@@ -18,7 +18,7 @@
 
   const play = document.createElement('button'); play.type = 'button'; play.id = 'playSteps'; play.textContent = 'Play';
   const axisWrap = document.createElement('label'); axisWrap.className = 'ctl-axis';
-  axisWrap.innerHTML = '<span>over</span><select id="playAxis" aria-label="Parameter to animate"><option value="searchStep">Game step</option><option value="simulation">Simulation count</option><option value="threads">Search threads</option><option value="puct">Exploration coefficient</option></select>';
+  axisWrap.innerHTML = '<span>over</span><select id="playAxis" aria-label="Parameter to animate"><option value="searchStep">Step</option><option value="simulation">Simulations</option><option value="threads">Threads</option><option value="puct">Exploration</option></select>';
   const axisSel = axisWrap.querySelector('select');
   const speedWrap = document.createElement('label'); speedWrap.className = 'ctl-speed';
   speedWrap.innerHTML = '<span>Speed</span><input id="playSpeed" type="range" min="1" max="10" step="1" value="3" aria-label="Playback speed, frames per second"><output id="playSpeedValue">3 steps/s</output>';
@@ -29,7 +29,8 @@
   const playGroup = document.createElement('div'); playGroup.className = 'ctl-play'; playGroup.append(play, axisWrap, speedWrap);
   // "Size nodes by visits" and "Export SVG" act on the drawn tree, so they live on the tree panel's own row.
   const viewActions = document.querySelector('.tree-panel .view-actions');
-  if (viewActions) { if (visits) viewActions.prepend(visits); if (exportBtn) viewActions.append(exportBtn); viewActions.append(playGroup); }
+  // Playback on the first row; the three view tools on the row below it.
+  if (viewActions) { if (visits) viewActions.prepend(visits); if (exportBtn) viewActions.append(exportBtn); viewActions.prepend(playGroup); }
   top.append(field(aside.querySelector('label[for="game"]'), $('game')), field(aside.querySelector('.snapshot-picker')), options_);
   sliders.append(...aside.querySelectorAll('.control'));
   aside.prepend(top, sliders);
