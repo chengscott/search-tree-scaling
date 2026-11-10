@@ -192,7 +192,7 @@ def inject_site_bar(html: str, depth: int, body_class: str = '') -> str:
     """Add the shared top bar, fonts and theme layer to a sub-site page. depth = directory depth below root."""
     rel = '../' * depth
     tags = (FONTS_LINK + f'<link rel="stylesheet" href="{rel}site-bar.css"><link rel="stylesheet" href="{rel}theme.css">'
-            f'<script defer src="{rel}site-bar.js" data-root="{rel}"></script>')
+            f'<script defer src="{rel}site-bar.js?v=2" data-root="{rel}"></script>')
     if 'site-bar.js' in html:
         return html
     html = html.replace('</head>', tags + '</head>', 1)
