@@ -354,8 +354,8 @@ body.site-figures .shape-panel svg .legend-entry.hot text{font-weight:600;fill:#
 
 /* Figure 1: play controls on the tree panel's row */
 body.site-figures.figure1-page .view-actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px}
-body.site-figures.figure1-page .view-actions{justify-content:flex-end}
-body.site-figures.figure1-page .view-actions .ctl-play{display:flex;flex:1 0 100%;flex-direction:row;align-items:center;justify-content:flex-end;gap:12px;margin:0;padding:0}
+body.site-figures.figure1-page .view-actions{flex:1 1 100%;justify-content:flex-end}
+body.site-figures.figure1-page .view-actions .ctl-play{display:flex;flex-direction:row;align-items:center;gap:12px;margin:0 auto 0 0;padding:0}
 body.site-figures.figure1-page .view-actions .ctl-play .ctl-speed{display:inline-flex;align-items:center;gap:8px;margin:0}
 body.site-figures.figure1-page .view-actions .ctl-play .ctl-speed input{width:110px}
 body.site-figures.figure1-page .ctl-axis{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:#626960}
