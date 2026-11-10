@@ -4,6 +4,7 @@
   // The script lives at the site root, so its directory is the root. Fall back to data-root
   // (relative to the page) only when the script URL is unavailable.
   const root = script?.src ? new URL('.', script.src) : new URL(script?.dataset.root || '.', location.href);
+  const here = location.pathname;
   const links = [
     { id: 'home', label: 'Overview', href: 'index.html', test: p => !/\/(figures|proof)\//.test(p) },
     { id: 'figures', label: 'Interactive figures', short: 'Figures', href: 'figures/figure1/index.html', test: p => /\/figures\//.test(p) },
