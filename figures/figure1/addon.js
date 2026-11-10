@@ -1,6 +1,6 @@
 /* Figure 1 add-on, loaded after the explorer's app.js (copied to figures/figure1/addon.js by the build).
    Reuses the explorer's top-level helpers (lookup, gameRecords, stepTree, draw, options, prettify, S/T/P).
-   - lays the controls out as a toolbar above the tree; "Play steps" and its speed control sit on the tree panel's row
+   - lays the controls out as a toolbar above the tree; "Play" (over step, simulation count, threads or exploration coefficient) and its speed control sit on the tree panel's row
    - replaces the fixed "Compare corners" grid with four always-visible, individually configurable panels */
 (() => {
   'use strict';
@@ -16,15 +16,17 @@
   const sliders = document.createElement('div'); sliders.className = 'ctl-row ctl-sliders';
   const options_ = document.createElement('div'); options_.className = 'ctl-options';
 
-  const play = document.createElement('button'); play.type = 'button'; play.id = 'playSteps'; play.textContent = 'Play steps';
+  const play = document.createElement('button'); play.type = 'button'; play.id = 'playSteps'; play.textContent = 'Play';
+  const axisWrap = document.createElement('label'); axisWrap.className = 'ctl-axis';
+  axisWrap.innerHTML = '<span>over</span><select id="playAxis" aria-label="Parameter to animate"><option value="searchStep">Game step</option><option value="simulation">Simulation count</option><option value="threads">Search threads</option><option value="puct">Exploration coefficient</option></select>';
+  const axisSel = axisWrap.querySelector('select');
   const speedWrap = document.createElement('label'); speedWrap.className = 'ctl-speed';
-  speedWrap.innerHTML = '<span>Speed</span><input id="playSpeed" type="range" min="1" max="10" step="1" value="3" aria-label="Playback speed, steps per second"><output id="playSpeedValue">3 steps/s</output>';
+  speedWrap.innerHTML = '<span>Speed</span><input id="playSpeed" type="range" min="1" max="10" step="1" value="3" aria-label="Playback speed, frames per second"><output id="playSpeedValue">3 steps/s</output>';
   const speed = speedWrap.querySelector('input'), speedOut = speedWrap.querySelector('output');
-  speed.addEventListener('input', () => { speedOut.textContent = `${speed.value} steps/s`; });
 
   const visits = $('visits')?.closest('label'), exportBtn = $('export');  // look these up before anything is detached
   options_.append(...[aside.querySelector('.actions')].filter(Boolean));
-  const playGroup = document.createElement('div'); playGroup.className = 'ctl-play'; playGroup.append(play, speedWrap);
+  const playGroup = document.createElement('div'); playGroup.className = 'ctl-play'; playGroup.append(play, axisWrap, speedWrap);
   // "Size nodes by visits" and "Export SVG" act on the drawn tree, so they live on the tree panel's own row.
   const viewActions = document.querySelector('.tree-panel .view-actions');
   if (viewActions) { if (visits) viewActions.prepend(visits); if (exportBtn) viewActions.append(exportBtn); viewActions.append(playGroup); }
@@ -47,30 +49,95 @@
   const typeset = () => { if (window.renderMathInElement) { const intro = document.querySelector('.intro'); if (intro) renderMathInElement(intro, { delimiters: [{ left: '\\[', right: '\\]', display: true }, { left: '\\(', right: '\\)', display: false }], throwOnError: false }); } };
   typeset(); window.addEventListener('load', typeset);
 
-  /* ---------- playback ---------- */
-  let timer = null;
-  const stop = () => { clearTimeout(timer); timer = null; play.textContent = 'Play steps'; };
-  const shownStep = () => { const m = /recorded search step (\d+)/.exec($('provenance')?.textContent || ''); return m ? +m[1] : -1; };
-  const advance = () => {
-    if (+step.value >= +step.max) { stop(); return; }
-    step.value = +step.value + 1;
-    step.dispatchEvent(new Event('input', { bubbles: true }));
-    const target = +step.value, started = Date.now(), interval = 1000 / +speed.value;
-    const wait = () => {
-      if (!timer) return;
-      const ready = shownStep() === target || Date.now() - started > 2500;
-      if (ready) timer = setTimeout(advance, Math.max(0, interval - (Date.now() - started)));
-      else timer = setTimeout(wait, 40);
+  /* ---------- playback over any slider ----------
+     "Play" sweeps the chosen slider (game step, simulation count, threads or exploration coefficient) from its current
+     value upward, one archived setting per frame; unarchived combinations are skipped, never shown empty. Parameter sweeps
+     hold one viewport (the union of every frame's layout box, each frame centred) so the tree visibly grows or shrinks;
+     refitting per frame would draw every tree at the same size. */
+  const AXES = {
+    searchStep: { el: step, speed: 3, unit: 'steps/s' },
+    simulation: { el: $('simulation'), speed: 1, unit: 'frames/s', opt: 'budget', values: () => S },
+    threads: { el: $('threads'), speed: 1, unit: 'frames/s', opt: 'threads', values: () => T },
+    puct: { el: $('puct'), speed: 1, unit: 'frames/s', opt: 'c', values: () => (mode === 'real' ? P : [0, 1, 2, 3, 4]) },
+  };
+  const axisOptions = (axis, i) => { const a = AXES[axis], o = options(); return a.opt ? { ...o, [a.opt]: a.values()[i] } : o; };
+  const recordFor = o => lookup.get([o.game, o.budget, o.threads, o.c].join(':'));
+  const frames = axis => {
+    const a = AXES[axis], all = Array.from({ length: +a.el.max + 1 }, (_, i) => i);
+    if (axis === 'searchStep') return a.el.disabled || mode !== 'real' ? [] : all;
+    return mode === 'real' ? all.filter(i => recordFor(axisOptions(axis, i))) : all;
+  };
+  const expected = () => { const o = options(); return `c=${o.c} · simulations=${o.budget} · threads=${o.threads} · ${mode === 'real' ? `episode 1, recorded search step ${o.step}` : 'illustrative model'}`; };
+  const shown = () => $('provenance')?.textContent || '';
+
+  let active = false, timer = null, driving = false, held = null, session = 0;
+  const speedLabel = () => { speedOut.textContent = `${speed.value} ${AXES[axisSel.value].unit}`; };
+  const refreshAxes = () => {
+    for (const opt of axisSel.options) opt.disabled = frames(opt.value).length < 2;
+    const n = frames(axisSel.value).length;
+    play.disabled = n < 2 && !active;
+    play.title = n < 2 ? 'Fewer than two recorded settings along this axis for the current selection' : '';
+  };
+  const stop = () => { active = false; clearTimeout(timer); timer = null; held = null; session++; play.textContent = 'Play'; play.setAttribute('aria-pressed', 'false'); refreshAxes(); };
+  const setSlider = (el, v) => { driving = true; try { el.value = v; el.dispatchEvent(new Event('input', { bubbles: true })); } finally { driving = false; } };
+  // Hold the viewport during a parameter sweep: same scale for every frame, each frame centred horizontally.
+  const applyHold = () => { if (held && fullBox) { viewBox = [fullBox[0] - (held[2] - fullBox[2]) / 2, held[1], held[2], held[3]]; $('treeSvg').setAttribute('viewBox', viewBox.join(' ')); } };
+  const drawMain = draw;
+  draw = function (svg, flat, isMain = false) {
+    const r = drawMain(svg, flat, isMain);
+    if (isMain) { applyHold(); refreshAxes(); }
+    return r;
+  };
+  const frameNodes = async (axis, i) => {
+    const o = axisOptions(axis, i);
+    if (mode !== 'real') return engine.runTree(o).nodes;
+    const rec = recordFor(o); if (!rec) return null;
+    return stepTree(rec, Math.min(o.step, (rec.stepCount || 1) - 1));
+  };
+  const unionBox = async (axis, idxs) => {
+    let w = 0, h = 0;
+    for (const i of idxs) {
+      let nodes = null; try { nodes = await frameNodes(axis, i); } catch { /* skipped frame */ }
+      if (!nodes?.length) continue;
+      const b = layout(nodes).box; w = Math.max(w, b[2]); h = Math.max(h, b[3]);
+    }
+    return w && h ? [0, 0, w, h] : null;
+  };
+  const run = async () => {
+    const mine = ++session, axis = axisSel.value, a = AXES[axis], all = frames(axis), cur = +a.el.value;
+    let queue = all.filter(i => i > cur); if (!queue.length) queue = all;
+    if (axis !== 'searchStep') {
+      play.textContent = 'Loading…';
+      const box = await unionBox(axis, [cur, ...queue]);
+      if (!active || mine !== session) return;
+      held = box; applyHold();  // start frame at the shared scale, then hold one interval before moving on
+    }
+    play.textContent = 'Pause';
+    const advance = () => {
+      if (!active || mine !== session) return;
+      if (!queue.length) { stop(); return; }
+      setSlider(a.el, queue.shift());
+      const started = Date.now(), interval = 1000 / +speed.value;
+      const wait = () => {
+        if (!active || mine !== session) return;
+        const s = shown(), ready = s.startsWith(expected()) || s.startsWith('No recorded tree') || Date.now() - started > 4000;
+        timer = setTimeout(ready ? advance : wait, ready ? Math.max(0, interval - (Date.now() - started)) : 40);
+      };
+      timer = setTimeout(wait, 40);
     };
-    timer = setTimeout(wait, 40);
+    if (held) timer = setTimeout(advance, 1000 / +speed.value); else advance();
   };
   play.addEventListener('click', () => {
-    if (timer) { stop(); return; }
-    if (+step.value >= +step.max) step.value = 0;
-    play.textContent = 'Pause'; advance();
+    if (active) { stop(); return; }
+    if (frames(axisSel.value).length < 2) return;
+    active = true; play.setAttribute('aria-pressed', 'true'); run();
   });
-  ['game', 'snapshotPreset', 'puct', 'simulation', 'threads'].forEach(id => $(id)?.addEventListener('input', stop));
+  speed.addEventListener('input', speedLabel);
+  axisSel.addEventListener('input', () => { stop(); speed.value = AXES[axisSel.value].speed; speedLabel(); });
+  ['game', 'snapshotPreset', 'puct', 'simulation', 'threads', 'searchStep'].forEach(id => $(id)?.addEventListener('input', () => { if (!driving) stop(); }));
   step.addEventListener('pointerdown', stop);
+  ['reset', 'realMode', 'modelMode'].forEach(id => $(id)?.addEventListener('click', stop));
+  speedLabel(); refreshAxes();
 
   /* ---------- comparison lab ---------- */
   const old = $('comparison'); if (old) old.remove();

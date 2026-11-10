@@ -354,7 +354,7 @@ def build_figures(src: Path, dest: Path, max_steps: int, shards: int = 0, data_b
         sys.exit('figure1/index.html: reference block not found')
     html = inject_site_bar(html, depth=2, body_class='site-figures')
     shutil.copy2(ROOT / 'tools' / 'figure1_addon.js', f1_dest / 'addon.js')
-    html = html.replace('</head>', KATEX_TAGS + '<script defer src="addon.js"></script></head>', 1)
+    html = html.replace('</head>', KATEX_TAGS + '<script defer src="addon.js?v=2"></script></head>', 1)
     (f1_dest / 'index.html').write_text(fix_wording(html), encoding='utf-8')
     log(f'[figures] stripped {_path_hits[0]} local file paths from copied text files')
     log(f'[figures] figure1: {len(records)} settings, {local_trees:,} local trees of {full_steps:,}, '
